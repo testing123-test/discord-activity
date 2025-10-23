@@ -38,7 +38,7 @@ const goButton = document.getElementById('go');
 const preloadButtons = document.querySelectorAll('#preload button');
 
 // SSE connection to sync URLs
-const evtSource = new EventSource('https://discord-activity.contactlandinreese.workers.dev/events');
+const evtSource = new EventSource('shared-browse.contactlandinreese.workers.dev/events');
 evtSource.onmessage = e => {
   if (e.data === 'ping') return;
   loadURL(e.data, false); // false = do not resend to server
@@ -76,7 +76,7 @@ function loadURL(url, sendToServer) {
       }
     };
     if (sendToServer) {
-      fetch('https://discord-activity.contactlandinreese.workers.dev/set', {
+      fetch('shared-browse.contactlandinreese.workers.dev/set', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ url })
@@ -91,3 +91,4 @@ function loadURL(url, sendToServer) {
 
 </body>
 </html>
+
